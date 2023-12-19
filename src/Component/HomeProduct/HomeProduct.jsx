@@ -78,7 +78,7 @@ const HomeProduct = () => {
                     <div className="HOME">
                         HOME</div>
                     <div className="homebuttom">
-                        /
+                        
                     </div>
                     <div className="SELLERS">
                         BEST SELLERS
