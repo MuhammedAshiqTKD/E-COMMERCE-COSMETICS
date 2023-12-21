@@ -5,8 +5,6 @@ import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { FiTrash } from "react-icons/fi";
 import { FiEdit2 } from "react-icons/fi";
-// import { HiSquaresPlus } from "react-icons/hi2";
-// import { BsAppIndicator } from "react-icons/bs";
 
 const AdminHome = () => {
 
