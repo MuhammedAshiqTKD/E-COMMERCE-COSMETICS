@@ -99,7 +99,7 @@ const Category = () => {
                             <p>* ADMINISTRATORS OFTEN MANAGE USER ACCESS AND PERMISSIONS WITHIN A SOFTWARE SYSTEM.<br></br>
                                 *THEY SET UP AND MAINTAIN SECURITY MEASURES TO PROTECT SENSITIVE*<br></br>
                                 DATA AND ENSURE THAT ONLY AUTHORIZED INDIVIDUALS HAVE ACCESS TO CERTAIN FUNCTIONALITIES.</p>
-                            <button className='signin'>Submit</button>
+                            <button className='signin'>ADD CATEGORY</button>
                         </form>
                     </div>
 

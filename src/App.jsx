@@ -8,6 +8,8 @@ import Category from './Component/category/category'
 import HomeProduct from './Component/HomeProduct/HomeProduct'
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
 import Editcategory from './Component/Editcategory/Editcategory'
+import Addproduct from './Component/Addproduct/Addproduct'
+// import multer from 'multer'
 // import aaaaaaaaaaa from './Component/adminjbjhbjhvhjvu/adminaaaaaaaaa'
 
 function App() {
@@ -26,7 +28,8 @@ function App() {
       <Route path='/home' Component={AdminHome}/> 
       <Route path='/Category' Component={Category}/>
       <Route path='/editCategory/:id' Component={Editcategory}/>
-      {/* <Route path='/ashiq' Component={aaaaaaaaaaa}/> */}
+      <Route path='/addproduct' Component={Addproduct}/>
+     
 
     </Routes>
     

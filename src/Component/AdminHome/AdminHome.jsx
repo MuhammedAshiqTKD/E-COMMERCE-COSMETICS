@@ -12,13 +12,21 @@ const AdminHome = () => {
 
 
 
+
+
+
+
+
+
+
+
+    
     const navigate = useNavigate()
     const [msg, setMsg] = useState("")
     const [count, setCount] = useState(0)
     const value = JSON.parse(localStorage.getItem('admintoken'));
     const getName = async () => {
-
-        // console.log(value);
+  // console.log(value);
         const res = await axios.get("http://localhost:3333/eco/home", {
             headers: { Authorization: `Bearer ${value}` },
         })
@@ -197,7 +205,7 @@ const AdminHome = () => {
                                     <div className='addprocato'>ADD CATEGORY</div>
                                 </div>
                             </Link>
-                            <Link to={'/products'} className='link3'>
+                            <Link to={'/addproduct'} className='link3'>
                                 <div className='cardsm'>
                                     <div className='products'></div>
                                     <div className='addprocato'>ADD PRODUCT</div>
@@ -208,10 +216,7 @@ const AdminHome = () => {
                         <div className='main1contentborder1 '>
 
                         </div>
-
                     </div>
-
-
                 </div>
             </div>
 

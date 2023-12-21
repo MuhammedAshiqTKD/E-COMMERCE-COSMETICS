@@ -14,7 +14,7 @@
     font-weight: 400;
     line-height: 1.14286;
     letter-spacing: 0;
-    margin-top: 5%;
+    margin-top: 2%;
     margin-left: 9%;
 }
 
@@ -86,7 +86,7 @@ margin-left: 9.09%;
     background-color: transparent;
     width: 30%;
 }
-.admintext2 h1{
+.admintext23 h1{
     font-family: TradeGothicW01-BoldCn20_675334,Helvetica,Arial,sans-serif;
     font-weight: 400;
     text-transform: uppercase;
@@ -102,16 +102,17 @@ margin-left: 9.09%;
     font-weight: 400;
     line-height: 1.14286;
     letter-spacing: 0;
-    margin-top: 2%;
+    margin-top: 1%;
     margin-left: 9%;   
+    width: 50%;
+    text-align: justify;
 }
-
 .adminregister button{
     font-family: roboto-mono_regular,Helvetica,Arial,sans-serif;
     font-size: 15px;
     /* height: 45px; */
     /* line-height: 45px; */
-    padding: 17px 110px;
+    padding: 17px 134px;
     margin-left: 9%;
     margin-top: 1%;
     background-color: black;
@@ -314,4 +315,64 @@ margin-left: 9.09%;
     margin-right:0;
     font-weight:600
   }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.infield2 input[type="file"] {
+  background-color: #000000; /* Dark background color for the file input */
+  color: #ffffff; /* Light text color for the file input */
+  border: 1px solid #666; /* Border color */
+  padding: 13px;
+  // border-radius: 4px;
+  margin-bottom: 13px;
+}
+
+
+/* Apply styles to the select element */
+.select select.input-field {
+  padding: 12px ;
+  font-size: 16px;
+  border: 1px solid #000000;
+  // border-radius: 4px;
+  outline: none;
+  height: 56px;
+  width: 376px; /* Adjust the width as needed */
+}
+
+/* Style the placeholder text */
+.select option[id='optionaaa'] {
+  color: #888;
+}
+
+/* Apply styles to the options within the select */
+.select select.input-field option {
+  font-size: 14px;
+  // background-color: #000000;
+}
+
+/* Style for the selected option */
+.select select.input-field option:checked {
+  background-color: #000000; /* Change as needed */
+  color: white;
+}
+select{
+  padding: 12px 95px;
 }

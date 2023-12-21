@@ -846,3 +846,25 @@ body {
     font-weight:600
   }
 }
+
+
+
+
+.timer h2{
+    font-size: 18px;
+    color: #1E8953;
+    text-align: center;
+    margin-top: 5px;
+    font-family: monospace;
+    margin-bottom: 5px;
+    margin-top: 2%;
+}
+.datadtime{
+    font-size: 36px;
+    color: #1E8953;
+    text-align: center;
+    margin-top: 5px;
+    font-family: ano_regular,Helvetica,Arial,sans-serif;
+    margin-bottom: 5px;
+    /* margin-left: %; */
+}

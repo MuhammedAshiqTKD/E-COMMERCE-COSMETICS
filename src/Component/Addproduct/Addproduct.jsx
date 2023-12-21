@@ -1,78 +1,96 @@
-import React from 'react';
-import maclogo from './maclogo.png';
-import { Link } from 'react-router-dom';
-import "./Adminlogin.css";
-import { useState } from 'react';
-import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer, toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import React, { useEffect,useState } from 'react'
+import axios from "axios"
+import maclogo from './maclogo.png'
 
-const Adminlogin = () => {
-  const success = () =>
-    toast.success("Login successful", {
-      position: "top-right",
-      autoClose: 2500,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      style: {
-        width: "700px",
+import { Link } from 'react-router-dom'
+import "./Addproduct.scss"
+const Addproduct = () => {
+
+  const [getCat,setCat]=useState([])
+  const [val,setVal]=useState({
+    product_name:"",
+    category_name:"",
+    Description:"",
+    price:"",
+    stoke:"",
+    images:""
+  })
+  const GetData=(e)=>{ 
+    setVal((pre)=>({...pre,[e.target.name]:e.target.value}))
+    console.log(val);
+  }
+
+  const getCategory=async()=>{
+    const res=await axios.get("http://localhost:3333/eco/categorygetdata")
+    setCat(res.data)
+    console.log(getCat);
+  }
+  useEffect(()=>{
+    getCategory()
+  },[])
+
+  const addProduct=async(e)=>{
+   try {
+    e.preventDefault()
+    let formData = new FormData();
+    console.log(Object.entries(val));
+    Object.entries(val).forEach(item => formData.append(item[0],item[1]));
+    if (val.images && val.images.length > 0) {
+      for (const image of val.images) {
+        formData.append('images', image);
+      }
+    }
+    const res = await axios.post("http://localhost:3333/eco/addProduct", formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
       },
-      progress: undefined,
-      theme: "dark",
     });
 
-  const navigate = useNavigate();
-  const [username, setUser] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post("http://localhost:3333/eco/adminlogin", {
-        username: username,
-        password: password
-      });
-
-      const data = response.data;
-      console.log(data);
-
-      if (response.status !== 404) {
-        const token = data.token;
-        localStorage.setItem("admintoken", JSON.stringify(token));
-        success();
-        setTimeout(() => {
-          navigate("/home");
-        }, 3000);
-      } else {
-        alert(data.msg);
-      }
-    } catch (error) {
-      alert("Server not connected");
+    if(res.status!==404){
+      alert("Product Added")
     }
-  };
+   } catch (error) {
+      alert("error",error)
+   }
+  }
+
 
   return (
     <div>
+      
+
       <div className="mainadmin">
         <div className="navitem">
           <div className="maclogo">
             <img src={maclogo} alt="" />
+
           </div>
           <div className="centernav">
             <h4></h4>
           </div>
+
+
+
+
+
+
           <div className="serachbox">
-            <input type="text" value="Admin name" />
+
+            <input type="text" value="{Admin name}" />
           </div>
+
+
+
+
           <div className="addtocart">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-bag" viewBox="0 0 16 16">
               <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z" />
             </svg>
           </div>
         </div>
+
+
+
         <div className="itemlist">
           <div className="item11">NEW! STUDIO RADIANCE FOUNDATION</div>
           <div className="item1">BEST-SELLERS</div>
@@ -84,60 +102,69 @@ const Adminlogin = () => {
           <div className="item1">OFFER</div>
           <div className="item1">EXPLORE</div>
         </div>
-        <div className="bottomline"></div>
+
+
+        <div className="bottomline">
+
+        </div>
+
+
       </div>
 
       <div className="adminbar">
-        <h1>ADMIN LOGIN</h1>
+        <h1>ADD PRODUCT</h1>
+      </div>
+    <form   onSubmit={addProduct}>
+    <div className="adminloginbutton">
+        <button>ADD PRODUCT</button>
       </div>
 
-      <form>
-        <div className="adminloginbutton">
-          <button type="submit" onClick={handleLogin}>
-            LOG IN NOW
-          </button>
-        </div>
+      <div className="inputfield">
+        <input type="text" placeholder='Product name'   name="product_name" onChange={GetData} />
+        <input type="text" placeholder='Description' name="Description"  onChange={GetData} />
 
-        <div className="inputfield">
-          <input type="text" placeholder='Enter the email' name='email' onChange={(e) => setUser(e.target.value)} />
-          <input type="password" placeholder='Enter the password' name='password' onChange={(e) => setPassword(e.target.value)} />
-        </div>
+      </div>
+      
+      {/* <select name="category" id="category"  className="input-field" onChange={GetData}>
+     {
+      getCat.map((data,index)=>
+        <option value={data.category} key={index}>{data.category}</option>
+     )
+     }
+      </select> */}
+      <div className="infield2">
+        <input type="text" placeholder='Price' name='price' onChange={GetData}  />
+        <input type="text" placeholder='Number of stock'  name="stoke" onChange={GetData}  />
+        
+      </div>
+      <div className="infield2">
+        
+        <input type="file" name='images'    onChange={e => setVal(p => ({...p,[e.target.name]: e.target.files}))}  multiple/>
+        <div className="select">
+        <select name="category_name" id="category" className="input-field" onChange={GetData}>
+  <option id='optionaaa' value=""  selected >Select Category</option>
+  {getCat.map((data, index) => (
+    <option value={data.category_name} key={index}>{data.category_name}</option>
+  ))}
+</select>
 
-        <div className="forgot">
-          <Link to="/forgotpassword" className='upass'>
-            <button>forgot password</button>
-          </Link>
-        </div>
+  </div>
+       
+      </div>
+   
 
-        <div className="admintext1">
-          <h1>* Administrators often manage user access and permissions within a software system.</h1>
-          <h1>* They set up and maintain security measures to protect sensitive data and ensure*</h1> 
-            <h1>that only authorized individuals have access to certain functionalities.</h1>
-        </div>
 
-        <div className="adminregister">
-          <button type="submit" onClick={handleLogin}>
-            LOG IN NOW
-          </button>
-          <ToastContainer
-            position="top-right"
-            autoClose={2500}
-            hideProgressBar={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="dark"
-          />
-        </div>
-      </form>
-
-      <div className="adminrview">
-        <Link to="/adminregister" className='abc'>
-          <h1>ADMIN REGISTER</h1>
+      <div className="adminregister">
+        <Link to="">
+          
+          <button onClick={addProduct} type='submit'>ADD PRODUCT</button>
         </Link>
+        <div className="admintext23">
+        <h1>* Administrators often manage user access and permissions b a software <br></br> *They set up and m aaaaaaaaintain security measures to protect sensitive<br></br>* data and ensure     d only authorized individuals access to  functionalities.   </h1>
       </div>
+      </div>
+      
+</form>    
 
       {/* <!-- Site footer --> */}
       <footer className="site-footer">
@@ -197,16 +224,8 @@ const Adminlogin = () => {
         </div>
       </footer>
 
-
-
-
-
-
-
-
-
     </div>
   )
 }
 
-export default Adminlogin
+export default Addproduct

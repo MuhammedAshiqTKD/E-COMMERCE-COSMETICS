@@ -2,9 +2,41 @@ import React from 'react'
 import maclogo from './maclogo.png'
 // import bannerimgseller from "./sleek banner desktop-1.avif"
 // import {Link} from 
-// import { useState } from 'react'
+import { useState ,useEffect} from 'react'
 import './Homeproduct.css'
 const HomeProduct = () => {
+
+
+    const offerEndTime = new Date('2023-12-31T23:59:59'); // Set your offer end time
+  const [timeRemaining, setTimeRemaining] = useState(calculateTimeRemaining());
+
+  useEffect(() => {
+    const timerInterval = setInterval(() => {
+      setTimeRemaining(calculateTimeRemaining());
+    }, 1000);
+
+    return () => clearInterval(timerInterval);
+  }, []);
+
+  function calculateTimeRemaining() {
+    const currentTime = new Date();
+    const difference = offerEndTime - currentTime;
+
+    if (difference <= 0) {
+      clearInterval(timerInterval);
+      return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+    }
+
+    const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+    return { days, hours, minutes, seconds };
+  }
+
+  const formatTimeUnit = (unit) => (unit < 10 ? `0${unit}` : unit);
+
 
     return (
         <div>
@@ -56,11 +88,21 @@ const HomeProduct = () => {
                 <div className="bottomline">
 
                 </div>
+             <div className="timer">
+             <h2>OFFER ENDS IN:</h2>
+      <div className='datadtime'>
+ 
+        <span>{formatTimeUnit(timeRemaining.hours)}</span>:
+        <span>{formatTimeUnit(timeRemaining.minutes)}</span>:
+        <span>{formatTimeUnit(timeRemaining.seconds)}</span>
+      </div>
+             </div>
+    </div>
 
 
-                <div className="bestsellers">
+                {/* <div className="bestsellers">
                     <h1>BEST SELLERS</h1>
-                </div>
+                </div> */}
                 <div className="botoomsellerbanner">
                     <h1>DAZZLE BRIGHTER</h1>
                     <h2>WITH M.A.C</h2>
@@ -365,7 +407,7 @@ const HomeProduct = () => {
 
 
             </div>
-        </div>
+        
     )
 }
 

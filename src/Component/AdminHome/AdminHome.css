@@ -49,12 +49,12 @@
 .back-btn{
     color: rgb(255, 255, 255);
     text-decoration: none;
-    /* margin-left: px; */
     background-color: black;
-    font-size: 20px;
-    padding: 1.7px 12px ;
-    /* border: 1px solid red; */
+    font-size: 17px;
+    padding: 1.9px 11.9px ;
+
 }
+
 .back-btn i{
     
     border: none;
