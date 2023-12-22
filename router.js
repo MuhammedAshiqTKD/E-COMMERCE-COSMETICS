@@ -22,4 +22,5 @@ router.route("/adminlogin").post(controller.adminLogin);
 router.route('/addProduct').post(upload.array( 'images'), controller.AddProducts);
 router.route("/image/:filename").get(controller.SetPath);
 
+
 export default router;

@@ -23,8 +23,7 @@ const AdminHome = () => {
     const [msg, setMsg] = useState("")
     const [count, setCount] = useState(0)
     const value = JSON.parse(localStorage.getItem('admintoken'));
-    const getName = async () => {
-  // console.log(value);
+    const getName = async () => { 
         const res = await axios.get("http://localhost:3333/eco/home", {
             headers: { Authorization: `Bearer ${value}` },
         })

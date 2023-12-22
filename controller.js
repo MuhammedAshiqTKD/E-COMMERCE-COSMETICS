@@ -181,32 +181,15 @@ export async function editCategory(req, res) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 export async function AddProducts(req, res) {
   try {
     // console.log(req.files);
-    const images=req.files;
+    const images = req.files;
     console.log(images);
-    const { product_name,category_name,Description,price,stoke } = req.body;
-    const task=await product_schema.create({ product_name,category_name,Description,price,stoke,images });
+    const { product_name, category_name, Description, price, stoke } = req.body;
+    const task = await product_schema.create({ product_name, category_name, Description, price, stoke, images });
     console.log(task);
-    res.status(200).send({result : task});
+    res.status(200).send({ result: task });
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
@@ -215,9 +198,12 @@ export async function AddProducts(req, res) {
 
 
 
-export async function SetPath(req,res)
-{
+
+
+export async function SetPath(req, res) {
   let { filename } = req.params;
   console.log(filename);
   return res.sendFile(path.resolve(`./images/${filename}`))
 }
+
+
