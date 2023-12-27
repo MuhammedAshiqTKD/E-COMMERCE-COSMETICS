@@ -1,11 +1,14 @@
-import React, { useEffect,useState,useNavigate} from 'react'
+import React, { useEffect,useState} from 'react'
 import axios from "axios"
+import { useNavigate } from 'react-router-dom'
 import maclogo from './maclogo.png'
 
 import { Link } from 'react-router-dom'
 import "./Addproduct.scss"
 const Addproduct = () => {
   const navigate=useNavigate()
+  let Images=""
+  let Banner="";
   const [getCat,setCat]=useState([])
   const [val,setVal]=useState({
     product_name:"",
@@ -13,11 +16,58 @@ const Addproduct = () => {
     Description:"",
     price:"",
     stoke:"",
-    images:""
+    images:"",
+    banner:""
   })
   const GetData=(e)=>{ 
     setVal((pre)=>({...pre,[e.target.name]:e.target.value}))
     console.log(val);
+  }
+
+
+
+  
+  const convertToBase64Images = (files) => {
+    return Promise.all(
+      Array.from(files).map((file) => {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.addEventListener('load', () => resolve(reader.result));
+          reader.addEventListener('error', (error) => reject(error));
+          reader.readAsDataURL(file);
+        });
+      })
+    );
+  };
+  function convertToBase64Banner(file) {
+    return new Promise((resolve, reject) => {
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(file);
+  
+        fileReader.onload = () => {
+            resolve(fileReader.result)
+        }
+        fileReader.onerror = (error) => {
+            reject(error)
+        }
+    })
+  }
+
+  const GetBanner=async(e)=>{
+    e.preventDefault()
+  
+    Banner=await convertToBase64Banner(e.target.files[0])
+    console.log(Banner);
+  }
+
+
+
+  const GetImages=async(e)=>{
+    e.preventDefault()
+  
+    Images=await convertToBase64Images(e.target.files)
+    console.log(Images);
+    // setVal(Images)
   }
 
   const getCategory=async()=>{
@@ -29,31 +79,40 @@ const Addproduct = () => {
     getCategory()
   },[])
 
-  const addProduct=async(e)=>{
-   try {
-    e.preventDefault()
-    let formData = new FormData();
-    console.log(Object.entries(val));
-    Object.entries(val).forEach(item => formData.append(item[0],item[1]));
-    if (val.images && val.images.length > 0) {
-      for (const image of val.images) {
-        formData.append('images', image);
-      }
-    }
-    const res = await axios.post("http://localhost:3333/eco/addProduct", formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
 
-    if(res.status!==404){
-      alert("Product Added")
-      navigate("")
+
+  const addProduct = async (e) => {
+    try {
+      e.preventDefault();
+  
+      
+  
+      const res = await axios.post("http://localhost:3333/eco/addProduct", { ...val, images: Images, banner: Banner });
+      console.log(res.data);
+  
+      if (res) {
+        alert("Product Added");
+        navigate("/home");
+      }
+    } catch (error) {
+      console.log(error);
     }
-   } catch (error) {
-      alert("error",error)
-   }
-  }
+  };
+  
+ 
+  // const addProduct=async(e)=>{
+  //   try {
+  //     e.preventDefault()
+  //     const res = await axios.post("http://localhost:3333/eco/addProduct",{...val,images:Images,banner:Banner})
+  //     console.log(res.data);
+  //     if(res){
+  //       alert("Product Added")
+  //       navigate("/home")
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 
 
   return (
@@ -138,9 +197,11 @@ const Addproduct = () => {
         <input type="text" placeholder='Number of stock'  name="stoke" onChange={GetData}  />
         
       </div>
+      <div className="infield2">  <input type="file" name='images'   onChange={GetImages}  multiple/>
+        <input name="banner" type="file"  onChange={GetBanner}/></div>
       <div className="infield2">
         
-        <input type="file" name='images'    onChange={e => setVal(p => ({...p,[e.target.name]: e.target.files}))}  multiple/>
+        
         <div className="select">      
         <select name="category_name" id="category" className="input-field" onChange={GetData}>
   <option id='optionaaa' value=""  selected >Select Category</option>
