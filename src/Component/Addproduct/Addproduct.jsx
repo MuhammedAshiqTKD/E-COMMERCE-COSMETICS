@@ -1,11 +1,11 @@
-import React, { useEffect,useState } from 'react'
+import React, { useEffect,useState,useNavigate} from 'react'
 import axios from "axios"
 import maclogo from './maclogo.png'
 
 import { Link } from 'react-router-dom'
 import "./Addproduct.scss"
 const Addproduct = () => {
-
+  const navigate=useNavigate()
   const [getCat,setCat]=useState([])
   const [val,setVal]=useState({
     product_name:"",
@@ -48,6 +48,7 @@ const Addproduct = () => {
 
     if(res.status!==404){
       alert("Product Added")
+      navigate("")
     }
    } catch (error) {
       alert("error",error)
@@ -140,7 +141,7 @@ const Addproduct = () => {
       <div className="infield2">
         
         <input type="file" name='images'    onChange={e => setVal(p => ({...p,[e.target.name]: e.target.files}))}  multiple/>
-        <div className="select">
+        <div className="select">      
         <select name="category_name" id="category" className="input-field" onChange={GetData}>
   <option id='optionaaa' value=""  selected >Select Category</option>
   {getCat.map((data, index) => (
