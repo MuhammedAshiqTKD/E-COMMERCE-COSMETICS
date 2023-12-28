@@ -201,3 +201,12 @@ export async function AddProducts(req, res) {
 
 
 
+export async function getCategoryWisedProduct(req, res) {
+  try {
+    const { category_name } = req.params;
+    const products = await product_schema.find({ category_name: category_name });
+    res.status(200).json(products);
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}

@@ -16,7 +16,7 @@ const Addproduct = () => {
     Description:"",
     price:"",
     stoke:"",
-    images:"",
+    images:[],
     banner:""
   })
   const GetData=(e)=>{ 
@@ -69,9 +69,9 @@ const Addproduct = () => {
     console.log(Images);
     // setVal(Images)
   }
-
+// jhhugytdtrdjyguyfgfchtf
   const getCategory=async()=>{
-    const res=await axios.get("http://localhost:3333/eco/categorygetdata")
+    const res=await axios.get("http://localhost:3333/eco/-")
     setCat(res.data)
     console.log(getCat);
   }

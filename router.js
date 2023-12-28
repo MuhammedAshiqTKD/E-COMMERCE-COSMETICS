@@ -23,4 +23,8 @@ router.route('/addProduct').post(controller.AddProducts);
 // router.route("/image/:filename").get(controller.SetPath);
 
 
+router.route("/getCatWiseProducts/:category_name").get(controller.getCategoryWisedProduct);
+
+
+
 export default router;

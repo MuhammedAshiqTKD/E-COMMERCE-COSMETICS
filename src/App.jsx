@@ -9,6 +9,7 @@ import HomeProduct from './Component/HomeProduct/HomeProduct'
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
 import Editcategory from './Component/Editcategory/Editcategory'
 import Addproduct from './Component/Addproduct/Addproduct'
+import viewproduct from './Component/ViewProduct/ViewProduct'
 // import multer from 'multer'
 // import aaaaaaaaaaa from './Component/adminjbjhbjhvhjvu/adminaaaaaaaaa'
 
@@ -29,6 +30,7 @@ function App() {
       <Route path='/Category' Component={Category}/>
       <Route path='/editCategory/:id' Component={Editcategory}/>
       <Route path='/addproduct' Component={Addproduct}/>
+      <Route path='/viewproduct/:category_name' Component={viewproduct}/>
      
 
     </Routes>
