@@ -69,7 +69,7 @@ const Addproduct = () => {
     console.log(Images);
     // setVal(Images)
   }
-// jhhugytdtn njbhjghrdjyguyfgfchtf
+// jhhugytdtn njbhjghrdjyguyfgjhhvhjvjhjvjfchtf
   const getCategory=async()=>{
     const res=await axios.get("http://localhost:3333/eco/-")
     setCat(res.data)
