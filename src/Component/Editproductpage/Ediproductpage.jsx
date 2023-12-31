@@ -113,7 +113,7 @@ const Editproductpage = () => {
             if (res) {
 
                 setTimeout(() => {
-                    navigate("/productfulldetails");
+                    navigate("/home");
                 }, 10);
 
             }

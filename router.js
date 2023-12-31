@@ -33,5 +33,7 @@ router.route("/addCustomer").post(controller.AddCustomer);
 router.route("/customerLogin").post(controller.CustomerLogin);
 router.route("/CustHome").get(Auth,controller.customerHome);
 
+router.route("/getAllProducts").get(controller.getAllProducts);
+
 
 export default router;

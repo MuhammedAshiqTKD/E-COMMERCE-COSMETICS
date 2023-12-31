@@ -10,6 +10,20 @@ import './Homeproduct.css'
 const HomeProduct = () => {
 
 
+    const [getProducts,setProducts]=useState([])
+  
+    // http://localhost:7000/sportstrack/getAllProducts
+    const getAllProducts=async()=>{
+      const res=await axios.get("http://localhost:3333/eco/getAllProducts") 
+      // console.log(res.data);
+      setProducts(res.data)
+      console.log(getProducts); 
+    }
+    useEffect(()=>{
+      getAllProducts()
+    },[])
+
+ 
     const [id, setId] = useState("")
     const naviagate = useNavigate()
     const [msg, setMsg] = useState("")
@@ -186,101 +200,58 @@ const HomeProduct = () => {
                     <p>SHOP GLOW MUST HAVES</p>
                 </div>
 
+
+                <div className="carousel-container">
+      <div className="carousel">
+        {getProducts.map((data, index) => (
+          <div className="product-card" key={index}>
+            <div className="card-img">
+              <img src={data.banner} alt={data.product_name} />
+            </div>
+            <div className="product-name">
+              <h1>{data.product_name}</h1>
+              <span>{data.price}</span>
+              <h2>{data.Description}</h2>
+            </div>
+            <div className="product-button">
+              <button>ADD TO BAG</button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+{/* 
                 <div className="productmain">
-                    {/* <h3>SHOP GLOW MUST HAVE</h3> */}
-                    <div className="prouductcard">
+                   
+                   {
+                    getProducts.map((data,index)=>(
+                        <div className="prouductcard"  key={index}>
                         <div className="newsection">
                             NEW
                         </div>
                         <div className="cardimg">
-                            <img src="/public/mac_sku_SYP818_1x1_0.avif" alt="" />
+                            <img src={data.banner} />
 
                         </div>
                         <div className="productname">
                             <h1>
-                                STUDIO RADIANCE SERUM-POWERED FOUNDATION
+                                {data.product_name}
                             </h1>
                             <span>
-                                ₹ 3,950.00
+                                {data.price}
                             </span>
                             <h2>
-                                Serum-Infused Foundation, Medium Buildable Coverage, Lasting Radiant Finish
+                                {data.Description}
                             </h2>
                         </div>
                         <div className="productbutton">
                             <button>ADD TO BAG</button>
                         </div>
                     </div>
-                    <div className="prouductcard">
-                        <div className="newsection">
-                            NEW
-                        </div>
-                        <div className="cardimg">
-                            <img src="/public/mac_sku_SYP818_1x1_0.avif" alt="" />
-
-                        </div>
-                        <div className="productname">
-                            <h1>
-                                STUDIO RADIANCE SERUM-POWERED FOUNDATION
-                            </h1>
-                            <span>
-                                ₹ 3,950.00
-                            </span>
-                            <h2>
-                                Serum-Infused Foundation, Medium Buildable Coverage, Lasting Radiant Finish
-                            </h2>
-                        </div>
-                        <div className="productbutton">
-                            <button>ADD TO BAG</button>
-                        </div>
-                    </div>
-                    <div className="prouductcard">
-                        <div className="newsection">
-                            NEW
-                        </div>
-                        <div className="cardimg">
-                            <img src="/public/mac_sku_SYP818_1x1_0.avif" alt="" />
-
-                        </div>
-                        <div className="productname">
-                            <h1>
-                                STUDIO RADIANCE SERUM-POWERED FOUNDATION
-                            </h1>
-                            <span>
-                                ₹ 3,950.00
-                            </span>
-                            <h2>
-                                Serum-Infused Foundation, Medium Buildable Coverage, Lasting Radiant Finish
-                            </h2>
-                        </div>
-                        <div className="productbutton">
-                            <button>ADD TO BAG</button>
-                        </div>
-                    </div>
-                    <div className="prouductcard">
-                        <div className="newsection">
-                            NEW
-                        </div>
-                        <div className="cardimg">
-                            <img src="/public/mac_sku_SYP818_1x1_0.avif" alt="" />
-
-                        </div>
-                        <div className="productname">
-                            <h1>
-                                STUDIO RADIANCE SERUM-POWERED FOUNDATION
-                            </h1>
-                            <span>
-                                ₹ 3,950.00
-                            </span>
-                            <h2>
-                                Serum-Infused Foundation, Medium Buildable Coverage, Lasting Radiant Finish
-                            </h2>
-                        </div>
-                        <div className="productbutton">
-                            <button>ADD TO BAG</button>
-                        </div>
-                    </div>
-                </div>
+                    ))
+                   }
+                  
+                </div> */}
 
 
 
@@ -322,26 +293,34 @@ const HomeProduct = () => {
 
 
                    <div className="maincardessntial">
-                   <div className="cardessentail">
+                  <Link to={`/Eyeproduct`}  className='cardessentail'>
+                  <div className="cardessentail">
                         <img src="/public/Eye-Block.avif" alt="" />
                         <h1>EYES</h1>
                         <a>SHOP NOW</a>
                     </div>
+                  </Link>
+                    <Link  to={`/Faceproduct`}  className='cardessentail'>
                     <div className="cardessentail">
                         <img src="/public/Face Block.avif" alt="" />
                         <h1>FACE</h1>
                         <a>SHOP NOW</a>
                     </div>
+                    </Link>
+                    <Link  to={`/Lipproduct`} className='cardessentail'>
                     <div className="cardessentail">
                         <img src="/public/Lip Block.avif" alt="" />
                         <h1>LIP</h1>
                         <a>SHOP NOW</a>
                     </div>
-                    <div className="cardessentail">
+                    </Link>
+                   <Link to={`/Skinproduct`} className='cardessentail'>
+                   <div className="cardessentail">
                         <img src="/public/Skin Block 598x598.avif" alt="" />
                         <h1>SKIN</h1>
                         <a>SHOP NOW</a>
                     </div>
+                   </Link>
                    </div>
 
 

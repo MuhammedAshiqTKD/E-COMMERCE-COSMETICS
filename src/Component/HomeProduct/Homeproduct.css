@@ -371,23 +371,24 @@ body {
     border: 2px solid black;
 }
 
-.productname h1 {
+.product-name h1 {
     font-family: ano-bold_regular, Helvetica, Arial, sans-serif;
-    font-size: 14px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 700;
     letter-spacing: 0;
     line-height: 1.14286;
     font-family: ano-bold_regular, Helvetica, Arial, sans-serif;
     width: 100%;
-    max-width: 314px;
-    margin: auto;
+    max-width: 245px;
+    /* margin: auto; */
     text-align: center;
+    margin-right: 15%;
     margin-top: 3%;
     text-transform: uppercase;
 }
 
-.productname span {
+.product-name span {
     font-family: ano_regular, Helvetica, Arial, sans-serif;
     font-size: 16px;
     line-height: 18px;
@@ -395,11 +396,12 @@ body {
     font-weight: 400;
     margin-top: 2%;
     text-transform: uppercase;
-    margin-left: 40%;
+    margin-left: 36%;
+    text-align: justify;
 
 }
 
-.productname h2 {
+.product-name h2 {
     font-family: ano_regular, Helvetica, Arial, sans-serif;
     font-size: 16px;
     font-style: normal;
@@ -407,13 +409,15 @@ body {
     letter-spacing: 0;
     line-height: 1.5;
     margin-top: 2%;
-    margin-left: 4%;
-    width: 94%;
+    /* margin-left: 1%; */
+    width: 83%;
+    text-align: justify;
+    margin-right: 5%;
     text-align: center;
 
 }
 
-.productbutton button {
+.product-button button {
     border: 0 !important;
     max-width: unset;
     width: auto;
@@ -421,7 +425,7 @@ body {
     border-radius: 45px;
     /* height: 35px; */
     font-size: 12px;
-    margin-left: 32%;
+    margin-left: 26%;
     font-family: ano-bold_regular, Helvetica, Arial, sans-serif;
     /* line-height: 45px; */
     margin-top: 2%;
@@ -621,6 +625,8 @@ body {
 .cardessentail {
     margin-left: 4.09%;
     padding-top: 3%;
+    color: black;
+    text-decoration: none;
 
 }
 
@@ -880,3 +886,42 @@ body {
     color: white;
     margin-left: 11%;
 }
+
+
+
+
+
+
+
+
+
+.carousel-container {
+    width: 95%;
+    overflow: hidden;
+    margin-left: 3%;
+    margin-top: 3%;
+    background-color: #eaeceb5d;
+  }
+  
+  .carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch; 
+  }
+  
+  .product-card {
+    flex: 0 0 auto;
+    width: 300px; /* Set your desired width for each product card */
+    margin-right: 15px; /* Adjust the margin between cards */
+    scroll-snap-align: hidden;
+  }
+  .carousel::-webkit-scrollbar {
+    display: none;
+}
+  
+  /* Add your existing styles for product cards here */
+  .card-img img{
+    height: 240px;
+    width: 85%;
+  }

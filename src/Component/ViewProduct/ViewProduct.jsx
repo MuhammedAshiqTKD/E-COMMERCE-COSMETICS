@@ -60,10 +60,10 @@ const ViewProduct = () => {
           BACK
         </Link>
       </div>
- {prod.map((data, index) => (
-      <Link to={`/productfulldetails/${data._id}`} key={index} >
-        <div className="mainproduct">
-         
+      {prod.map((data, index) => (
+        <Link to={`/productfulldetails/${data._id}`} key={index} >
+          <div className="mainproduct">
+
             <div className="main111" key={index}>
               <div className="sub">
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -86,20 +86,20 @@ const ViewProduct = () => {
                     <div className="card-content">
                       <h2>{data.product_name}</h2>
 
-                       <a href="#" className="button">
-                        Explore now 
+                      <a href="#" className="button">
+                        Explore now
                         <span className="material-symbols-outlined">arrow_right_alt</span>
                       </a>
-                      
+
                     </div>
                   </div>
                 </main>
               </div>
             </div>
-          
-        </div>
 
-      </Link> ))}   </div>
+          </div>
+
+        </Link>))}   </div>
   );
 };
 

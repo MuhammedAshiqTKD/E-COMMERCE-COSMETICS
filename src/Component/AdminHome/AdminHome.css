@@ -182,8 +182,14 @@ justify-content: space-between;
     color: #000000;
     
 }
+.catogoryname2{
+    color: #000000;
+    text-decoration: none;
+}
 .categorynames-only{
     width: 55%;
+    color: black;
+    text-decoration: none;
 }
 .link3{
     color:black;
@@ -196,7 +202,7 @@ justify-content: space-between;
     margin-left: 10px;
 }
 .edit-btn{
-    padding-left: 78%;
+    padding-left: 89%;
     color: #000000;
 }
 

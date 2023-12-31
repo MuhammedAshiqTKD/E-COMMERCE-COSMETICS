@@ -125,7 +125,7 @@ const Addproduct = () => {
         <div className="bottomline"></div>
       </div>
 
-      <form onSubmit={addProduct}>
+      <form onSubmit={addProduct} className='ADDPRDPRD'>
         <div className="adminloginbutton">
           <button>ADD PRODUCT</button>
         </div>

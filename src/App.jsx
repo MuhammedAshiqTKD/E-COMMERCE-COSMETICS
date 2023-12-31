@@ -14,6 +14,11 @@ import ProductFullDetails from "./Component/productfulldetails/productfulldetail
 import Editproductpage from './Component/Editproductpage/Ediproductpage'
 import Cusetomerreg from './Component/Customer/Cusetomerregistration/Cusetomerreg'
 import Customerlogin from "./Component/customerlogin/Customerlogin"
+import Eyeproduct from './Component/Eyeproduct/Eyeproduct'
+
+import Lipproduct from './Component/Liproduct/Liproduct'
+import Faceproduct from './Component/Faceproduct/Faceproduct'
+import Skinproduct from './Component/Skinproduct/Skinproduct'
 // import multer from 'multer'
 // import aaaaaaaaaaa from './Component/adminjbjhbjhvhjvu/adminaaaaaaaaa'
 
@@ -39,6 +44,10 @@ function App() {
       <Route path='/ediproduct/:id' Component={Editproductpage}/>
       <Route path='/CustomerReg' Component={Cusetomerreg}/>
       <Route path='/Customerlogin' Component={Customerlogin}/>
+      <Route path='/Eyeproduct' Component={Eyeproduct}/>
+      <Route path='/Faceproduct' Component={Faceproduct}/>
+      <Route path='/Lipproduct' Component={Lipproduct}/>
+      <Route path='/Skinproduct' Component={Skinproduct}/>
      
 
     </Routes>
