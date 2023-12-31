@@ -60,43 +60,46 @@ const ViewProduct = () => {
           BACK
         </Link>
       </div>
+ {prod.map((data, index) => (
+      <Link to={`/productfulldetails/${data._id}`} key={index} >
+        <div className="mainproduct">
+         
+            <div className="main111" key={index}>
+              <div className="sub">
+                <link rel="preconnect" href="https://fonts.googleapis.com" />
+                <link rel="preconnect" href="https://fonts.gstatic.com" />
+                <link
+                  href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&family=Roboto:wght@300&display=swap"
+                  rel="stylesheet"
+                />
+                <link
+                  rel="stylesheet"
+                  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+                />
 
-      <div className="mainproduct">
-        {prod.map((data, index) => (
-          <div className="main111" key={index}>
-            <div className="sub">
-              <link rel="preconnect" href="https://fonts.googleapis.com" />
-              <link rel="preconnect" href="https://fonts.gstatic.com" />
-              <link
-                href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&family=Roboto:wght@300&display=swap"
-                rel="stylesheet"
-              />
-              <link
-                rel="stylesheet"
-                href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
-              />
+                <main className='fleee'>
+                  <div className="card">
+                    <img
+                      src={data.banner}
+                      alt=""
+                    />
+                    <div className="card-content">
+                      <h2>{data.product_name}</h2>
 
-              <main>
-                <div className="card">
-                  <img
-                    src={data.banner}
-                    alt=""
-                  />
-                  <div className="card-content">
-                    <h2>{data.product_name}</h2>
-                  
-                    <a href="#" className="button">
-                      Find out more
-                      <span className="material-symbols-outlined">arrow_right_alt</span>
-                    </a>
+                       <a href="#" className="button">
+                        Explore now 
+                        <span className="material-symbols-outlined">arrow_right_alt</span>
+                      </a>
+                      
+                    </div>
                   </div>
-                </div>
-              </main>
+                </main>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
-    </div>
+          
+        </div>
+
+      </Link> ))}   </div>
   );
 };
 

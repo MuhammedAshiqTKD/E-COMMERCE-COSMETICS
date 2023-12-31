@@ -83,8 +83,9 @@
     text-align: center;
 }
 .bordertop2 img{
-    width: 60%;
+    width: 56%;
     min-width: 90px;
+    background-size: cover;
 }
 .borderleft{
     border-right: 3px solid rgba(0, 0, 0, 0.166);
@@ -250,7 +251,7 @@ justify-content: space-between;
 
 /* nav */
 .maclogo img {
-    height: 49px;
+    height: 45px;
     margin-left: 21%;
     margin-top: .2%;
 }
@@ -533,12 +534,148 @@ main {
 
 
 
-main{
-    display: flex !important;
-    margin-left: 15%;
-    
+.mainproduct{
+    display: flex;
 }
-.fleee{
-    display: flex !important;
-    
+
+
+
+.textprd h2{
+    font-family: ano_regular,Helvetica,Arial,sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: .30000001192092896px;
+    line-height: 1.16667;
+    color: #737373;
+    margin-top: .7%;
+    margin-left: 1%;
+}
+.secondprd img {
+    background-color: #f0f0f0;
+    width: 40%;
+    height: 25rem;
+    margin-left: 6%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    object-fit: cover; /* This property ensures the image covers the entire container */
+  }
+.mainprd{
+    display: flex;
+    margin-top: 5%;
+    margin-bottom: 9.3%;
+}
+// .secondprdtext h1{
+//    font-size: 10px;
+// }
+// .secondprdtext h2{
+//    font-size: 10px;
+// }
+// .secondprdtext h3{
+//    font-size: 10px;
+// }
+.secondprd{
+    display: flex;
+}
+
+
+.secondprdtext{
+width: 50%;
+margin-top: 2%;
+margin-right: 4%;
+}
+.secondprdtext h1{
+    font-family: ano-bold_regular,Helvetica,Arial,sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: black;
+    letter-spacing: 0;
+    font-family: ano-bold_regular,Helvetica,Arial,sans-serif;
+}
+.secondprdtext h2{
+    font-family: ano_regular,Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.14286;
+    color: black;
+}
+.secondprdtext h3{
+    font-family: ano_regular,Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.5;
+    display: block;
+    padding: 0;
+    order: 10;
+    margin-top: 1%;
+    width: 100%;
+    text-transform: none;
+    color: black;
+}
+.secondprd{
+    width: 100%;
+}
+.mainbuttons{
+    display: flex;
+    // margin-left: 3%;
+    gap: 3%;
+}
+.thirdprd h1{
+    font-family: ano_regular,Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.5;
+    display: block;
+    margin-top: 1%;
+    padding: 0;
+    order: 10;
+    width: 100%;
+    text-transform: none;
+    color: black;
+}
+.fourthprd{
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    font-family: helvetica_neue_bold,Helvetica,Arial,sans-serif;
+    font-size: 12px!important;
+    display: block;
+    line-height: 15px!important;
+    margin-top: 1%;
+    letter-spacing: .32px;
+    color: #000000;
+}
+.fifthprd{
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    font-family: helvetica_neue_bold,Helvetica,Arial,sans-serif;
+    font-size: 12px!important;
+    display: block;
+    color: #000000;
+    margin-top: 1%;
+    line-height: 15px!important;
+    letter-spacing: .32px;
+}
+
+.editbuttonprd button{
+    padding:10px 90px;
+    margin-top: 8%;
+    background-color: #000000;
+    color: white;
+    border: #000000;
+    border-radius: 22px;
+}
+.Deletebuttonprd button{
+    padding:8px 83px;
+    margin-top: 8%;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    border: 1px solid black;
+    border-radius: 22px;
 }

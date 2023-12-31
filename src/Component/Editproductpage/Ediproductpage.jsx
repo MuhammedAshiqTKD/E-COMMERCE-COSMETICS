@@ -1,100 +1,135 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate ,useParams } from 'react-router-dom';
 import maclogo from './maclogo.png';
 import { Link } from 'react-router-dom';
-import './Addproduct.scss';
+import './Ediproductpage.scss';
 
-const Addproduct = () => {
-  const navigate = useNavigate();
-  const [getCat, setCat] = useState([]);
-  const [val, setVal] = useState({
-    product_name: '',
-    category_name: '',
-    Description: '',
-    price: '',
-    stoke: '',
-    images: [],
-    banner: '',
-  });
+const Editproductpage = () => {
+ 
 
-  const GetData = (e) => {
-    setVal((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-    console.log(val);
-  };
 
-  const convertToBase64Images = (files) => {
-    return Promise.all(
-      Array.from(files).map((file) => {
+    const {id}=useParams()
+    const navigate = useNavigate()
+    let Banner = "";
+    let Images = "";
+    const [getCat, setCat] = useState([])
+    const [val, setVal] = useState({
+        productname: "",
+        category_name: "",
+        Description: "",
+        price: "",
+        stokes: "",
+        images: [],
+        banner: "",
+
+
+
+    })
+
+    const convertToBase64Images = (files) => {
+        return Promise.all(
+            Array.from(files).map((file) => {
+                return new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.addEventListener('load', () => resolve(reader.result));
+                    reader.addEventListener('error', (error) => reject(error));
+                    reader.readAsDataURL(file);
+                });
+            })
+        );
+    };
+
+
+
+    function convertToBase64Banner(file) {
         return new Promise((resolve, reject) => {
-          const reader = new FileReader();
-          reader.addEventListener('load', () => resolve(reader.result));
-          reader.addEventListener('error', (error) => reject(error));
-          reader.readAsDataURL(file);
-        });
-      })
-    );
-  };
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(file);
 
-  const convertToBase64Banner = (file) => {
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(file);
-
-      fileReader.onload = () => {
-        resolve(fileReader.result);
-      };
-      fileReader.onerror = (error) => {
-        reject(error);
-      };
-    });
-  };
-
-  const GetBanner = async (e) => {
-    e.preventDefault();
-
-    const banner = await convertToBase64Banner(e.target.files[0]);
-    setVal((prev) => ({ ...prev, banner }));
-    console.log(banner);
-  };
-
-  const GetImages = async (e) => {
-    e.preventDefault();
-
-    const images = await convertToBase64Images(e.target.files);
-    setVal((prev) => ({ ...prev, images }));
-    console.log(images);
-  };
-
-  const getCategory = async () => {
-    const res = await axios.get('http://localhost:3333/eco/categorygetdata');
-    setCat(res.data);
-    console.log(getCat);
-  };
-
-  useEffect(() => {
-    getCategory();
-  }, []);
-
-  const addProduct = async (e) => {
-    try {
-      e.preventDefault();
-
-      const res = await axios.post('http://localhost:3333/eco/addProduct', { ...val });
-      console.log(res.data);
-
-      if (res) {
-        alert('Product Added');
-        navigate('/home');
-      }
-    } catch (error) {
-      console.log(error);
+            fileReader.onload = () => {
+                resolve(fileReader.result)
+            }
+            fileReader.onerror = (error) => {
+                reject(error)
+            }
+        })
     }
-  };
+
+
+
+    const getCategory = async () => {
+        const res = await axios.get("http://localhost:3333/eco/categorygetdata")
+        setCat(res.data)
+        console.log(res.data);
+        console.log(getCat);
+    }
+    useEffect(() => {
+        getCategory()
+    }, [])
+
+   
+
+
+
+    const getProduct=async()=>{
+        const res=await axios.get(`http://localhost:3333/eco/getProduct/${id}`)
+        console.log(res.data);
+        setVal(res.data)
+    }
+
+    useEffect(() => {
+        getProduct()
+    }, [])
+
+    const GetImages = async (e) => {
+        e.preventDefault()
+
+        Images = await convertToBase64Images(e.target.files)
+        console.log(Images);
+        // setVal(Images)
+    }
+
+    const GetBanner = async (e) => {
+        e.preventDefault()
+
+        Banner = await convertToBase64Banner(e.target.files[0])
+        console.log(Banner);
+    }
+
+
+
+    const GetData = (e) => {
+        setVal((pre) => ({ ...pre, [e.target.name]: e.target.value }))
+        console.log(val);
+    }
+
+
+    const editProduct = async (e) => {
+        try {
+            e.preventDefault()
+            const res = await axios.patch(`http://localhost:3333/eco/editproduct/${id}`, { ...val, images: Images, banner: Banner })
+            console.log(res.data);
+            if (res) {
+
+                setTimeout(() => {
+                    navigate("/productfulldetails");
+                }, 10);
+
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
+
+
+    
 
   return (
     <div>
-       <div className="mainadmin">
+     <div className="mainadmin">
         <div className="navitem">
           <div className="maclogo">
             <img src={maclogo} alt="" />
@@ -125,19 +160,25 @@ const Addproduct = () => {
         <div className="bottomline"></div>
       </div>
 
-      <form onSubmit={addProduct}>
+      <form onSubmit={editProduct}>
         <div className="adminloginbutton">
-          <button>ADD PRODUCT</button>
+          <button>EDIT PRODUCT</button>
         </div>
-
+{/*     product_name:{type:String},
+    category_name:{type:String},
+    Description:{type:String},
+    price:{type:String},
+    stoke:{type:String},
+    images:{type:Object},
+    banner:{type:String} */}
         <div className="inputfield">
-          <input type="text" placeholder="Product name" name="product_name" onChange={GetData} />
-          <input type="text" placeholder="Description" name="Description" onChange={GetData} />
+          <input type="text" placeholder="Product name" value={val.product_name} name="product_name" onChange={GetData} />
+          <input type="text" placeholder="Description" value={val.Description}  name="Description" onChange={GetData} />
         </div>
 
         <div className="infield2">
-          <input type="text" placeholder="Price" name="price" onChange={GetData} />
-          <input type="text" placeholder="Number of stock" name="stoke" onChange={GetData} />
+          <input type="text" placeholder="Price" value={val.price} name="price" onChange={GetData} />
+          <input type="text" placeholder="Number of stock" value={val.stoke} name="stoke" onChange={GetData} />
         </div>
 
         <div className="infield2">
@@ -147,7 +188,7 @@ const Addproduct = () => {
 
         <div className="infield2">
           <div className="select">
-            <select name="category_name" id="category" className="input-field" onChange={GetData}>
+            <select name="category_name" id="category" value={val.category_name} className="input-field" onChange={GetData}>
               <option id="optionaaa" value="" selected>
                 Select Category
               </option>
@@ -162,8 +203,8 @@ const Addproduct = () => {
 
         <div className="adminregister">
           <Link to="">
-            <button onClick={addProduct} type="submit">
-              ADD PRODUCT
+            <button onClick={editProduct} type="submit">
+              EDIT PRODUCT
             </button>
           </Link>
           <div className="admintext23">
@@ -238,4 +279,4 @@ const Addproduct = () => {
   )
 }
 
-export default Addproduct
+export default Editproductpage

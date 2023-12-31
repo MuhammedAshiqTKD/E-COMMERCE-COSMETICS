@@ -10,6 +10,10 @@ import {BrowserRouter,Routes,Route} from 'react-router-dom'
 import Editcategory from './Component/Editcategory/Editcategory'
 import Addproduct from './Component/Addproduct/Addproduct'
 import viewproduct from './Component/ViewProduct/ViewProduct'
+import ProductFullDetails from "./Component/productfulldetails/productfulldetails"
+import Editproductpage from './Component/Editproductpage/Ediproductpage'
+import Cusetomerreg from './Component/Customer/Cusetomerregistration/Cusetomerreg'
+import Customerlogin from "./Component/customerlogin/Customerlogin"
 // import multer from 'multer'
 // import aaaaaaaaaaa from './Component/adminjbjhbjhvhjvu/adminaaaaaaaaa'
 
@@ -31,6 +35,10 @@ function App() {
       <Route path='/editCategory/:id' Component={Editcategory}/>
       <Route path='/addproduct' Component={Addproduct}/>
       <Route path='/viewproduct/:category_name' Component={viewproduct}/>
+      <Route path='/productfulldetails/:id' Component={ProductFullDetails}/>
+      <Route path='/ediproduct/:id' Component={Editproductpage}/>
+      <Route path='/CustomerReg' Component={Cusetomerreg}/>
+      <Route path='/Customerlogin' Component={Customerlogin}/>
      
 
     </Routes>

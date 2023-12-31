@@ -868,3 +868,15 @@ body {
     margin-bottom: 5px;
     /* margin-left: %; */
 }
+.home-ind-2
+{
+  /* border: 1px solid; */
+  /* margin-bottom: 5%; */
+  width: 14%;
+}
+.logout-ind{
+    background-color: #000;
+    border: #000;
+    color: white;
+    margin-left: 11%;
+}

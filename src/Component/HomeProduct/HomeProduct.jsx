@@ -2,9 +2,50 @@ import React from 'react'
 import maclogo from './maclogo.png'
 // import bannerimgseller from "./sleek banner desktop-1.avif"
 // import {Link} from 
+import axios from 'axios'
+import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useState ,useEffect} from 'react'
 import './Homeproduct.css'
 const HomeProduct = () => {
+
+
+    const [id, setId] = useState("")
+    const naviagate = useNavigate()
+    const [msg, setMsg] = useState("")
+    const value = JSON.parse(localStorage.getItem('customer_token'));
+  
+    const getName = async () => {
+      const res = await axios.get("http://localhost:3333/eco/CustHome", {
+        headers: { Authorization: `Bearer ${value}` },
+      })
+      console.log(res.data);
+      setMsg(res.data.msg)
+      setId(res.data.id)
+    }
+    useEffect(() => {
+      getName()
+    }, [])
+    console.log(id);
+
+    const Logout = () => {
+        const isConfirmed = window.confirm("Are you sure you want to logout?");
+        if (isConfirmed) {
+          localStorage.clear();
+          naviagate("/Customerlogin")
+    
+        }
+      };
+
+
+
+
+
+
+
+
+
+
 
 
     const offerEndTime = new Date('2023-12-31T23:59:59'); // Set your offer end time
@@ -82,6 +123,17 @@ const HomeProduct = () => {
                     <div className="item1">SKIN CARE</div>
                     <div className="item1">OFFER</div>
                     <div className="item1">EXPLORE</div>
+
+                    <div className='home-ind-2'>
+                {msg ? (
+                  <>
+                    <Link className="nav-link mx-2 text-uppercase active" to='/CustomerLogin' id="sign-ind"><i className="fa fa-user" aria-hidden="true"></i>   {msg}  <button className='logout-ind' onClick={Logout}>Logout</button></Link>
+
+                  </>
+                ) : (
+                  <Link className="nav-link mx-2 text-uppercase active" to='/CustomerLogin' id="sign-ind">Sign in</Link>
+                )}
+              </div>
                 </div>
 
 
@@ -109,7 +161,7 @@ const HomeProduct = () => {
                     <h3>Pick your Eye Shadow on ₹4,000*</h3>
                     <h4>  Get a 2-Piece Kit on ₹5,500*</h4>
                     <div className="shopnow">
-                        <button>SHOP NOW</button>
+                      <Link to="/CustomerReg">  <button>SIGN IN NOW</button></Link>
                         <h5>*Pick free products at checkout.</h5>
                         <h6>*Offer valid from 15th to 20th December.</h6>
                         <span>*Offer valid on maccosmetics.in until stocks last</span>

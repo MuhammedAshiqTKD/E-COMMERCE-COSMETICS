@@ -1,7 +1,8 @@
 import admin_schema from './admin.model.js'
 import category_schema from './category.model.js'
 import product_schema from './product.model.js'
-import path from 'path'
+import customer_schema from "./customer.model.js"
+// import path from 'path'
 import bcrypt from 'bcrypt'
 import pkg from "jsonwebtoken";
 const { sign } = pkg
@@ -208,5 +209,123 @@ export async function getCategoryWisedProduct(req, res) {
     res.status(200).json(products);
   } catch (error) {
     res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+export async function getProduct(req,res){
+  const { id }=req.params;
+  console.log(id);
+  let task=await product_schema.findOne({ _id:id })
+  console.log(task);
+  res.status(200).send(task)
+}
+
+
+export function deleteProduct(req,res)
+{
+    const{id}=req.params;
+    const data= product_schema.deleteOne({_id:id})
+    data.then((resp)=>{
+        res.status(200).send(resp)
+    }).catch((error)=>{
+        res.status(404).send(error)
+    })
+}
+
+
+
+
+export async function editProdect(req, res) {
+  const { id } = req.params;
+  try {
+      const updatedData = req.body;
+      const value = await product_schema.updateOne({ _id: id }, { $set: updatedData });
+      res.status(200).send(value);
+  } catch (error) {
+      res.status(404).send(error);
+  }
+}
+
+
+
+
+
+
+export async function AddCustomer(req, res) {
+  try {
+    const { password, ...custDetails } = req.body;
+    
+    if (!custDetails) {
+      return res.status(404).send("Fields are empty");
+    }
+
+    const hashedPwd = await bcrypt.hash(password, 10);
+
+    customer_schema.create({ ...custDetails, password: hashedPwd });
+
+    res.status(201).send("Successfully registered");
+  } catch (error) {
+    console.error(error);
+    res.status(500).send(error);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+ export async function CustomerLogin(req, res) {
+  try {
+    console.log(req.body);
+    const { email, password } = req.body;
+    const usr = await customer_schema.findOne({ email })
+    console.log(usr);
+    if (usr === null) return res.status(404).send("email or password doesnot exist");
+    const success =await bcrypt.compare(password, usr.password)
+    console.log(success);
+    const {name}=usr
+    if (success !== true) return res.status(404).send("email or password doesnot exist");
+    const token = await sign({ name }, process.env.JWT_KEY, { expiresIn: "24h" })
+    console.log(name);
+    console.log(token);
+    res.status(200).send({ msg: "successfullly login", token })
+   //  res.end();
+    
+   } catch (error) {
+    console.log(error);
+ }
+ }
+
+ export async function customerHome(req,res)
+{
+  try {
+    console.log(req.user);
+    
+     const{name,_id}=req.user;
+    res.status(200).send({msg:`${name}`,id:`${_id}`})
+   } 
+   catch (error) {
+    res.status(404).send(error)
   }
 }
