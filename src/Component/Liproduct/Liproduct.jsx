@@ -119,7 +119,7 @@ const Lipproduct = () => {
                    
                 </div>
                 
-                <div className="carousel-container">
+                <div className="carousel-container1">
       <div className="carousel">
         {getProducts.filter((data) => data.category_name === 'LIP')
         .map((data, index) => (
@@ -132,9 +132,11 @@ const Lipproduct = () => {
               <span>{data.price}</span>
               <h2>{data.Description}</h2>
             </div>
-            <div className="product-button">
+            <Link to={`/productdatafullincustomer/${data._id}`}>
+           <div className="product-button">
               <button>ADD TO BAG</button>
             </div>
+           </Link>
           </div>
         ))}
       </div>

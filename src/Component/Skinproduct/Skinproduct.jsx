@@ -116,10 +116,10 @@ const Skinproduct = () => {
 
                 <div className="headmainlist">
                     <h1>SKIN</h1>
-                   
+
                 </div>
 
-                <div className="carousel-container">
+                <div className="carousel-container1">
                     <div className="carousel">
                         {getProducts.filter((data) => data.category_name === 'SKIN')
                             .map((data, index) => (
@@ -132,9 +132,11 @@ const Skinproduct = () => {
                                         <span>{data.price}</span>
                                         <h2>{data.Description}</h2>
                                     </div>
-                                    <div className="product-button">
-                                        <button>ADD TO BAG</button>
-                                    </div>
+                                    <Link to={`/productdatafullincustomer/${data._id}`}>
+                                        <div className="product-button">
+                                            <button>ADD TO BAG</button>
+                                        </div>
+                                    </Link>
                                 </div>
                             ))}
                     </div>

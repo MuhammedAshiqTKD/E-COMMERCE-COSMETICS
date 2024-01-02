@@ -60,7 +60,8 @@ const ViewProduct = () => {
           BACK
         </Link>
       </div>
-      {prod.map((data, index) => (
+      <div className="mainflex">
+        {prod.map((data, index) => (
         <Link to={`/productfulldetails/${data._id}`} key={index} >
           <div className="mainproduct">
 
@@ -99,7 +100,9 @@ const ViewProduct = () => {
 
           </div>
 
-        </Link>))}   </div>
+        </Link>))}   
+      </div>
+      </div>
   );
 };
 

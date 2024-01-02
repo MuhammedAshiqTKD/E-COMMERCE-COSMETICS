@@ -19,6 +19,12 @@ import Eyeproduct from './Component/Eyeproduct/Eyeproduct'
 import Lipproduct from './Component/Liproduct/Liproduct'
 import Faceproduct from './Component/Faceproduct/Faceproduct'
 import Skinproduct from './Component/Skinproduct/Skinproduct'
+import productdatafullincustomer from './Component/productdatafullincustomer/productdatafullincustomer'
+import Cart from './Component/Cart/Cart'
+
+
+
+
 // import multer from 'multer'
 // import aaaaaaaaaaa from './Component/adminjbjhbjhvhjvu/adminaaaaaaaaa'
 
@@ -48,7 +54,9 @@ function App() {
       <Route path='/Faceproduct' Component={Faceproduct}/>
       <Route path='/Lipproduct' Component={Lipproduct}/>
       <Route path='/Skinproduct' Component={Skinproduct}/>
-     
+      <Route path='/productdatafullincustomer/:id' Component={productdatafullincustomer}/>
+      <Route path='/cart/:id' Component={Cart}/>
+      
 
     </Routes>
     

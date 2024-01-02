@@ -2,6 +2,8 @@ import admin_schema from './admin.model.js'
 import category_schema from './category.model.js'
 import product_schema from './product.model.js'
 import customer_schema from "./customer.model.js"
+import cart_schema from './cart.model.js'
+import wishlist_schema from "./wishList.model.js"
 // import path from 'path'
 import bcrypt from 'bcrypt'
 import pkg from "jsonwebtoken";
@@ -188,10 +190,10 @@ export async function AddProducts(req, res) {
     // console.log(req.files);
     // const images=req.files;
     // console.log(req.files);
-     const { ...productdetails } = req.body;
-    const task=await product_schema.create({ ...productdetails });
+    const { ...productdetails } = req.body;
+    const task = await product_schema.create({ ...productdetails });
     console.log(task);
-    res.status(200).send({result : task});
+    res.status(200).send({ result: task });
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
@@ -226,24 +228,23 @@ export async function getCategoryWisedProduct(req, res) {
 
 
 
-export async function getProduct(req,res){
-  const { id }=req.params;
+export async function getProduct(req, res) {
+  const { id } = req.params;
   console.log(id);
-  let task=await product_schema.findOne({ _id:id })
+  let task = await product_schema.findOne({ _id: id })
   console.log(task);
   res.status(200).send(task)
 }
 
 
-export function deleteProduct(req,res)
-{
-    const{id}=req.params;
-    const data= product_schema.deleteOne({_id:id})
-    data.then((resp)=>{
-        res.status(200).send(resp)
-    }).catch((error)=>{
-        res.status(404).send(error)
-    })
+export function deleteProduct(req, res) {
+  const { id } = req.params;
+  const data = product_schema.deleteOne({ _id: id })
+  data.then((resp) => {
+    res.status(200).send(resp)
+  }).catch((error) => {
+    res.status(404).send(error)
+  })
 }
 
 
@@ -252,11 +253,11 @@ export function deleteProduct(req,res)
 export async function editProdect(req, res) {
   const { id } = req.params;
   try {
-      const updatedData = req.body;
-      const value = await product_schema.updateOne({ _id: id }, { $set: updatedData });
-      res.status(200).send(value);
+    const updatedData = req.body;
+    const value = await product_schema.updateOne({ _id: id }, { $set: updatedData });
+    res.status(200).send(value);
   } catch (error) {
-      res.status(404).send(error);
+    res.status(404).send(error);
   }
 }
 
@@ -268,7 +269,7 @@ export async function editProdect(req, res) {
 export async function AddCustomer(req, res) {
   try {
     const { password, ...custDetails } = req.body;
-    
+
     if (!custDetails) {
       return res.status(404).send("Fields are empty");
     }
@@ -295,37 +296,36 @@ export async function AddCustomer(req, res) {
 
 
 
- export async function CustomerLogin(req, res) {
+export async function CustomerLogin(req, res) {
   try {
     console.log(req.body);
     const { email, password } = req.body;
     const usr = await customer_schema.findOne({ email })
     console.log(usr);
     if (usr === null) return res.status(404).send("email or password doesnot exist");
-    const success =await bcrypt.compare(password, usr.password)
+    const success = await bcrypt.compare(password, usr.password)
     console.log(success);
-    const {name}=usr
+    const { name,_id } = usr
     if (success !== true) return res.status(404).send("email or password doesnot exist");
-    const token = await sign({ name }, process.env.JWT_KEY, { expiresIn: "24h" })
+    const token = await sign({ name,_id }, process.env.JWT_KEY, { expiresIn: "24h" })
     console.log(name);
     console.log(token);
     res.status(200).send({ msg: "successfullly login", token })
-   //  res.end();
-    
-   } catch (error) {
-    console.log(error);
- }
- }
+    //  res.end();
 
- export async function customerHome(req,res)
-{
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function customerHome(req, res) {
   try {
     console.log(req.user);
-    
-     const{name,_id}=req.user;
-    res.status(200).send({msg:`${name}`,id:`${_id}`})
-   } 
-   catch (error) {
+
+    const { name, _id } = req.user;
+    res.status(200).send({ msg: `${name}`, id: `${_id}` })
+  }
+  catch (error) {
     res.status(404).send(error)
   }
 }
@@ -337,7 +337,57 @@ export async function AddCustomer(req, res) {
 
 
 
-export async function getAllProducts(req,res){
-  let task=await product_schema.find()
+export async function getAllProducts(req, res) {
+  let task = await product_schema.find()
   res.status(200).send(task)
 }
+
+
+
+
+export async function AddToCart(req, res) {
+  try {
+    const { ...productdetails } = req.body;
+    const task = await cart_schema.create({ ...productdetails });
+    console.log(task);
+    res.status(200).send(task);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+}
+
+
+export async function AddToWishList(req, res) {
+  try {
+    const { ...productdetails } = req.body;
+    const task = await wishlist_schema.create({ ...productdetails });
+    console.log(task);
+    res.status(200).send(task);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+}
+
+
+
+export async function getCartProduct(req,res){
+  const { id }=req.params;
+  console.log(id);
+  let task=await cart_schema.find({ cust_id:id })
+  console.log(task);
+  res.status(200).send(task)
+}
+
+export function delCartProduct(req,res)
+{
+    const{id}=req.params;
+    const data=cart_schema.deleteOne({_id:id})
+    data.then((resp)=>{
+        res.status(200).send(resp)          
+    }).catch((error)=>{
+        res.status(404).send(error)
+    })
+}
+ 

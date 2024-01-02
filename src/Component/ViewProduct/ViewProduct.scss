@@ -225,6 +225,13 @@ justify-content: space-between;
         letter-spacing: 1px;
 
     }
+
+
+
+
+}
+.mainflex {
+    display: flex;
 }
 
 
@@ -234,7 +241,10 @@ justify-content: space-between;
 
 
 
-
+.mainproduct {
+    display: flex;
+    /* Other styling properties */
+  }
 
 
 
@@ -560,3 +570,53 @@ main{
 
 
     
+
+
+
+
+
+
+
+
+
+
+// ViewProduct.scss
+.mainflex {
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .carousel-container {
+    display: flex;
+    animation: scrollRight 10s linear infinite; /* Adjust the animation duration as needed */
+  }
+  
+  @keyframes scrollRight {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-100% * 3)); /* Adjust the number of items (3 in this example) */
+    }
+  }
+  
+
+
+
+
+
+
+.mainflex{
+    overflow: hidden;
+    margin-top: 4%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch; 
+}
+
+
+
+.mainflex::-webkit-scrollbar {
+    display: none;
+}
+  

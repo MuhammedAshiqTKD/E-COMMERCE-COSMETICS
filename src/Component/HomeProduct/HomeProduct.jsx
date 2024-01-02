@@ -4,9 +4,10 @@ import maclogo from './maclogo.png'
 // import {Link} from 
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+// import { useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useState ,useEffect} from 'react'
-import './Homeproduct.css'
+import './Homeproduct.scss'
 const HomeProduct = () => {
 
 
@@ -61,36 +62,6 @@ const HomeProduct = () => {
 
 
 
-
-    const offerEndTime = new Date('2023-12-31T23:59:59'); // Set your offer end time
-  const [timeRemaining, setTimeRemaining] = useState(calculateTimeRemaining());
-
-  useEffect(() => {
-    const timerInterval = setInterval(() => {
-      setTimeRemaining(calculateTimeRemaining());
-    }, 1000);
-
-    return () => clearInterval(timerInterval);
-  }, []);
-
-  function calculateTimeRemaining() {
-    const currentTime = new Date();
-    const difference = offerEndTime - currentTime;
-
-    if (difference <= 0) {
-      clearInterval(timerInterval);
-      return { days: 0, hours: 0, minutes: 0, seconds: 0 };
-    }
-
-    const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-    return { days, hours, minutes, seconds };
-  }
-
-  const formatTimeUnit = (unit) => (unit < 10 ? `0${unit}` : unit);
 
 
     return (
@@ -156,12 +127,7 @@ const HomeProduct = () => {
                 </div>
              <div className="timer">
              <h2>OFFER ENDS IN:</h2>
-      <div className='datadtime'>
- 
-        <span>{formatTimeUnit(timeRemaining.hours)}</span>:
-        <span>{formatTimeUnit(timeRemaining.minutes)}</span>:
-        <span>{formatTimeUnit(timeRemaining.seconds)}</span>
-      </div>
+     
              </div>
     </div>
 
@@ -201,7 +167,7 @@ const HomeProduct = () => {
                 </div>
 
 
-                <div className="carousel-container">
+                <div className="carousel-container1">
       <div className="carousel">
         {getProducts.map((data, index) => (
           <div className="product-card" key={index}>
@@ -213,9 +179,11 @@ const HomeProduct = () => {
               <span>{data.price}</span>
               <h2>{data.Description}</h2>
             </div>
-            <div className="product-button">
+           <Link to={`/productdatafullincustomer/${data._id}`}>
+           <div className="product-button">
               <button>ADD TO BAG</button>
             </div>
+           </Link>
           </div>
         ))}
       </div>
