@@ -1,79 +1,77 @@
 import React, { useEffect, useState } from 'react'
 import "./cart.scss"
+import { Link } from 'react-router-dom'
 import maclogo from "./maclogo.png"
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 const Cart = () => {
 
 
-  const [totalPrice,setTotalPrice]=useState(0)
-  const { id } = useParams()
-  console.log(id);
-  const [getPrdct, setProdct] = useState([])
-
+  
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [getPrdct, setProdct] = useState([]);
 
   const getPrdctDetails = async () => {
-    const res = await axios.get(`http://localhost:3333/eco/getCartProduct/${id}`)
-    console.log(res.data);
-    setProdct(res.data)
-    console.log(getPrdct);
-  }
+    try {
+      const res = await axios.get(`http://localhost:3333/eco/getCartProduct/${id}`);
+      setProdct(res.data);
+    } catch (error) {
+      console.error('Error fetching product details:', error);
+    }
+  };
+
   useEffect(() => {
-    getPrdctDetails()
-  }, [])
+    getPrdctDetails();
+  }, []);
 
+  useEffect(() => {
+    const totalPriceSum = getPrdct.reduce((sum, product) => sum + Number(product.price), 0);
+    setTotalPrice(totalPriceSum);
+  }, [getPrdct]);
 
+  const qty=(e,index)=>{
+    const selectedQty=parseInt(e.target.value,10);
+    const price=getPrdct[index].price;
 
-  const delCartPrdct = async (id) => {
-    const userConfirmed = window.confirm("Are you sure you want to delete this product from the cart?");
+    if(!isNaN(price)){
+      const updatedPrice=price*selectedQty;
+      console.log(updatedPrice);
+      const updatedGetPrdct = [...getPrdct];
+      console.log(getPrdct);
+      updatedGetPrdct[index].price=updatedPrice
+      setProdct(updatedGetPrdct)
+    }
+  }
+
+  const BuyNow = async (e) => {
+    e.preventDefault();
+    const userConfirmed = window.confirm('Are you sure you want to proceed to checkout and delete all products?');
     if (userConfirmed) {
       try {
-        const res = await axios.delete(`http://localhost:3333/eco/delCartProduct/${id}`);
-        console.log(res.data);
-        if (res) {
-          alert("Product deleted");
-        } else {
-          alert("Product not deleted");
-        }
-        getPrdctDetails();
+        // Delete all products with the same cust_id
+        await axios.delete(`http://localhost:3333/eco/delAlltProduct/${id}`);
+        alert('Order Placed');
+        navigate('/');
       } catch (error) {
-        console.error("Error deleting product:", error);
+        console.error('Error deleting products:', error);
       }
     }
   };
 
-
-
-
-
-
-
-
-  useEffect(() => {
-    const totalPriceSum = getPrdct.reduce((sum, product) => {
-      const productPrice = Number(product.price);
-      return !isNaN(productPrice) ? sum + productPrice : sum;
-    }, 0);
-    console.log(totalPriceSum);
-    setTotalPrice(totalPriceSum);
-  }, [getPrdct]);
-  
-
-
-
-  // const qty = (e, index) => {
-  //   const selectedQty = parseInt(e.target.value, 10);
-  //   const price = getPrdct[index].price;
-
-  //   if (!isNaN(price)) {
-  //     const updatedPrice = price * selectedQty;
-  //     console.log(updatedPrice);
-  //     const updatedGetPrdct = [...getPrdct];
-  //     console.log(getPrdct);
-  //     updatedGetPrdct[index].price = updatedPrice
-  //     setProdct(updatedGetPrdct)
-  //   }
-  // }
+  const delCartPrdct = async (id) => {
+    const userConfirmed = window.confirm('Are you sure you want to delete this product from the cart?');
+    if (userConfirmed) {
+      try {
+        await axios.delete(`http://localhost:3333/eco/delCartProduct/${id}`);
+        alert('Product deleted');
+        getPrdctDetails();
+      } catch (error) {
+        console.error('Error deleting product:', error);
+      }
+    }
+  };
 
 
   return (
@@ -124,9 +122,14 @@ const Cart = () => {
             <label className="product-line-price">Total</label>
           </div>
 
-
-          {
-            getPrdct.map((data, index) =>
+          {getPrdct.length === 0 ? (
+                   <>
+                    <p className="no-items-message">No items in the cart</p>
+                    <div className='shpDiv'><Link className='shp-now-btn' to='/'>Shop Now</Link></div>
+                   </>
+                ) : (
+                    <>
+          {getPrdct.map((data, index) =>
               <div className="product" key={index}>
                 <div className="product-image">
                   <img src={data.banner} />
@@ -135,9 +138,9 @@ const Cart = () => {
                   <div className="product-title">{data.product_name}</div>
                   <p className="product-description">{data.Description}</p>
                 </div>
-                <div className="product-price">{data.price}</div>
+                <div className="product-price">₹ {data.price}</div>
                 <div className="product-quantity">
-                  <select name="" id="" className='product-quantity'>
+                  <select name="" id="" className='product-quantity' onChange={(e) => qty(e, index)}>
                     <option value="1">Qty : 1</option>
                     <option value="2">Qty : 2</option>
                     <option value="3">Qty : 3</option>
@@ -151,36 +154,35 @@ const Cart = () => {
                 <div className="product-removal">
                   <button onClick={() => delCartPrdct(data._id)} className="remove-product">Remove</button>
                 </div>
-                <div className="product-line-price"></div>
+                <div className="product-line-price">₹ {data.price}</div>
               </div>
-            )}
+                 )}
+                 </>
+             )}
 
 
 
 
           <div className="totals">
             <div className="totals-item">
-              <label>Subtotal</label>
-              <div className="totals-value" id="cart-subtotal"> {totalPrice ? totalPrice : 0}</div>
+              <label>Subtotal inc.GST</label>
+              <div className="totals-value" id="cart-subtotal">₹  {totalPrice ? totalPrice : 0}</div>
             </div>
+            
             <div className="totals-item">
-              <label>Tax (5%)</label>
-              <div className="totals-value" id="cart-tax">3.60</div>
-            </div>
-            <div className="totals-item">
-              <label>Shipping</label>
-              <div className="totals-value" id="cart-shipping">₹ 99</div>
-            </div>
+      <label>Shipping charge</label>
+      <div className="totals-value" id="cart-shipping">99</div>
+    </div>
             <div className="totals-item totals-item-total">
               <label>Grand Total</label>
               <div className="totals-value" id="cart-total">₹ {totalPrice ? totalPrice + 99 : 99}</div>
             </div>
           </div>
 
-          <button className="checkout">Checkout</button>
-
+          <button className="checkout" onClick={BuyNow}>Checkout</button>
+          </div>
         </div>
-      </div>
+     
 
       <footer className="site-footer">
         <div className="container">
