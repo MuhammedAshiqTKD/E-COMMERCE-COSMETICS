@@ -140,7 +140,7 @@ const Cart = () => {
                 </div>
                 <div className="product-price">₹ {data.price}</div>
                 <div className="product-quantity">
-                  <select name="" id="" className='product-quantity' onChange={(e) => qty(e, index)}>
+                  <select name="" id="" className='product-quantity'  onChange={(e) => qty(e, index)}>
                     <option value="1">Qty : 1</option>
                     <option value="2">Qty : 2</option>
                     <option value="3">Qty : 3</option>
