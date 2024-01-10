@@ -35,7 +35,8 @@ router.route("/CustHome").get(Auth,controller.customerHome);
 
 router.route("/getAllProducts").get(controller.getAllProducts);
 router.route("/addToCart").post(controller.AddToCart);
-router.route("/addToWhishList").post(controller.AddToWishList);
+router.route("/addtowishList").post(controller.AddToWishList);
 router.route("/getCartProduct/:id").get(controller.getCartProduct);
 router.route("/delCartProduct/:id").delete(controller.delCartProduct);
+router.route("/getWishlistProduct/:id").get(controller.getWishlistProduct);
 export default router;

@@ -12,6 +12,7 @@ const Cart = () => {
   const { id } = useParams();
   const [totalPrice, setTotalPrice] = useState(0);
   const [getPrdct, setProdct] = useState([]);
+  
 
   const getPrdctDetails = async () => {
     try {
@@ -130,7 +131,7 @@ const Cart = () => {
                 ) : (
                     <>
           {getPrdct.map((data, index) =>
-              <div className="product" key={index}>
+              <div className="product1" key={index}>
                 <div className="product-image">
                   <img src={data.banner} />
                 </div>

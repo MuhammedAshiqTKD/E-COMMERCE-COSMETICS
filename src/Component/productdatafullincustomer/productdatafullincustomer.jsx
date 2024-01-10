@@ -40,7 +40,7 @@ const ProductDataFullInCustomer = () => {
       console.log(res.data);
       setMsg(res.data.msg)
       SetId(res.data.id)
-      console.log(res.data.Id);
+      console.log(res.data.id);
       
     }
     useEffect(() => {
@@ -73,21 +73,22 @@ const ProductDataFullInCustomer = () => {
   
     //////add to wishlist
      
+    
     const addToWishList = async () => {
-      try {
-        const res = await axios.post("http://localhost:3333/eco/addtowishList", {...getProducts,cust_id:Id});
-        console.log(res.data);
-        if(res){
-          alert("Added To Wishlist")
-        }else{
-          alert("Error adding product to Wishlist. Please try again.")
+        try {
+          const res = await axios.post("http://localhost:3333/eco/addtowishList", {...getProducts,cust_id:Id});
+          console.log(res.data);
+          if(res){
+            alert("Added To Wishlist")
+          }else{
+            alert("Error adding product to Wishlist. Please try again.")
+          }
+        } catch (error) {
+            console.error("Error adding product to Wishlist:", error);
+            alert("Error adding product to Wishlist. Please try again.");
         }
-      } catch (error) {
-          console.error("Error adding product to Wishlist:", error);
-          alert("Error adding product to Wishlist. Please try again.");
-      }
-    };
-  
+      };
+    
   
   
   

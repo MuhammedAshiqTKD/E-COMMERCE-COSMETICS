@@ -357,7 +357,6 @@ export async function AddToCart(req, res) {
   }
 }
 
-
 export async function AddToWishList(req, res) {
   try {
     const { ...productdetails } = req.body;
@@ -369,6 +368,19 @@ export async function AddToWishList(req, res) {
     res.status(500).send("Internal Server Error");
   }
 }
+
+// export async function AddToWishList(req, res) {
+//   try {
+//     const { ...productdetails } = req.body;
+//     const task = await wishlist_schema.create({ ...productdetails });
+//     console.log(task);
+//     res.status(200).send(task);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).send("Internal Server Error");
+//   }
+// }
+
 
 
 
@@ -391,3 +403,17 @@ export function delCartProduct(req,res)
     })
 }
  
+
+
+
+
+
+
+
+export async function getWishlistProduct(req,res){
+  const { id }=req.params;
+  console.log(id);
+  let task=await wishlist_schema.find({ cust_id:id })
+  console.log(task);
+  res.status(200).send(task)
+}

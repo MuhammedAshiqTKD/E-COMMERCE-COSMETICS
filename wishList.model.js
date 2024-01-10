@@ -8,4 +8,4 @@ const wishlist_schema=new mongoose.Schema({
     banner:{type:String}
 })
 
-export default mongoose.model.wishlists||mongoose.model("wishlist",wishlist_schema)
+export default mongoose.model.wishlists||mongoose.model("wishlist-data",wishlist_schema)

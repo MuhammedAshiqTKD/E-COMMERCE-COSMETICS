@@ -25,6 +25,7 @@ body {
 
 .navitem {
     display: flex;
+    
 }
 
 /* .centernav h4{
@@ -126,6 +127,18 @@ body {
 }
 
 .addtocart {
+
+    padding-top: 1%;
+    font-weight: 800;
+}
+.addtocart1 {
+    color: #000;
+    padding-top: 1%;
+    margin-left: 1%;
+    font-weight: 800;
+}
+
+.addtocart1 {
 
     padding-top: 1%;
     font-weight: 800;
@@ -489,11 +502,13 @@ body {
 .main3phot9sec {
     display: flex;
     margin-top: 5%;
+    flex-wrap: wrap;
     margin-left: 2%;
 }
 
 .threesecphoto {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .threesecphoto h1 {
@@ -655,6 +670,7 @@ body {
 }
 .maincardessntial{
     display: flex;
+    flex-wrap: wrap;
 }
 
 
@@ -672,6 +688,7 @@ body {
 .wantyoumore{
     display: flex;
     gap: 15px;
+    flex-wrap: wrap;
     margin-left: 1%;
 }
 
@@ -913,6 +930,7 @@ body {
   
   .carousel {
     display: flex;
+    // flex-wrap: wrap;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch; 
@@ -920,6 +938,7 @@ body {
   
   .product-card {
     flex: 0 0 auto;
+    // flex-wrap: wrap;
     width: 300px; /* Set your desired width for each product card */
     margin-right: 15px; /* Adjust the margin between cards */
     scroll-snap-align: hidden;
@@ -933,3 +952,193 @@ body {
     height: 240px;
     width: 85%;
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  @media screen and (min-width: 330px) and (max-width: 575.98px) {
+    .serachbox{
+        display: none;
+    }
+    .maclogo img{
+        display: none;
+    }
+    .centernav{
+         display: none;
+    }
+    .item11{
+         display: none;
+    }
+    .item1{
+         display: none;
+    }
+    .botoomsellerbanner{
+        height: 230px;
+    }
+
+
+
+
+
+    .botoomsellerbanner h1 {
+        font-family: ano_regular, Helvetica, Arial, sans-serif;
+        line-height: 3.6vw;
+        font-size: 7.6vw;
+        font-style: normal;
+        color: #000000;
+        font-weight: 800;
+        letter-spacing: 0;
+        line-height: 1.11111;
+    
+    }
+    
+    .botoomsellerbanner h2 {
+        font-family: ano_regular, Helvetica, Arial, sans-serif;
+        line-height: 3.6vw;
+        font-size: 6.6vw;
+        font-style: normal;
+        color: #000000;
+        font-weight: 800;
+        letter-spacing: 0;
+        line-height: 1.11111;
+    
+    }
+    
+    .botoomsellerbanner h3 {
+        /* font-family: 'ano-bold_regular'; */
+        font-family: 'ano_regular';
+        font-size: 4.2vw;
+        line-height: 2.6vw;
+        margin-top: 0.5vw;
+        display: block;
+        color: black;
+    }
+    
+    .botoomsellerbanner h4 {
+        /* font-family: 'ano-bold_regular'; */
+        font-family: 'ano_regular';
+        font-size: 3.2vw;
+        line-height: 2.6vw;
+        margin-top: 0.5vw;
+        display: block;
+        color: black;
+    }
+    
+    .botoomsellerbanner h5 {
+        display: none;
+    }
+    
+    .botoomsellerbanner h6 {
+        display: none;
+    }
+    
+    .botoomsellerbanner span {
+       display: none;
+    }
+    .product-card {
+       margin-left: 11%;
+    }
+    .secondbanner img {
+      height: 200px;
+    }
+
+
+
+
+
+
+
+    .threesecphoto h1 {
+        
+        margin-top: 35%;
+    
+    }
+
+
+
+
+    .photo1 img {
+        height: 22rem;
+        width: 100%;
+        margin-left: 7%;
+    }
+    .photo2 img {
+        height: 17rem;
+        width: 100%;
+        margin-left: 21%;
+        margin-top: 18%;
+    }
+    .photo3 img {
+        height: 11rem;
+        width: 100%;
+        margin-left: 67%;
+        margin-top: 18%;
+    }
+
+    .glowessential {
+        color: #000;
+        font-family: ano_regular, Helvetica, Arial, sans-serif !important;
+        font-size: 23px;
+        text-align: center;
+        max-width: 1140px;
+        line-height: 35px;
+        padding-top: 5%;
+    }
+
+
+
+
+
+
+    .mainyou h1{
+        font-family: ano-bold_regular,Helvetica,Arial,sans-serif;
+        font-size: 20px;
+        font-weight: 300;
+        line-height: 1.2;
+        margin-top: 2%;
+        letter-spacing: 0;
+    }
+    #main3you img{
+        height: 247px;
+        width: 100%;
+    }
+    .mainyou img{
+        height: 247px;
+        width: 100%;
+    }
+
+
+
+
+    .addtocart1 {
+        color: #000;
+        padding-top: 1%;
+        margin-left: 83%;
+        font-weight: 800;
+    }
+    // .addtocart{
+    //     margin-left: 56%;
+    // }
+  }
+
+
+
+
+
+
+
+
+
+
+
+//   

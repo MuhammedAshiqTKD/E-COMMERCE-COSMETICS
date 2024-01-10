@@ -21,6 +21,7 @@ import Faceproduct from './Component/Faceproduct/Faceproduct'
 import Skinproduct from './Component/Skinproduct/Skinproduct'
 import productdatafullincustomer from './Component/productdatafullincustomer/productdatafullincustomer'
 import Cart from './Component/Cart/Cart'
+import Whishlist from './Component/Whishlist/Whishlist'
 
 
 
@@ -56,6 +57,8 @@ function App() {
       <Route path='/Skinproduct' Component={Skinproduct}/>
       <Route path='/productdatafullincustomer/:id' Component={productdatafullincustomer}/>
       <Route path='/cart/:id' Component={Cart}/>
+      <Route path='/whishlist/:id' Component={Whishlist}/>
+
       
 
     </Routes>

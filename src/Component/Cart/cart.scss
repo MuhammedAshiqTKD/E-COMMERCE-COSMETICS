@@ -28,7 +28,7 @@ $font-bold: 'HelveticaNeue-Medium', 'Helvetica Neue Medium';
 
 
 /* Apply clearfix in a few places */
-.shopping-cart, .column-labels, .product, .totals-item {
+.shopping-cart, .column-labels, .product1, .totals-item {
   @extend .group;
 }
 
@@ -75,7 +75,7 @@ label {
 
 
 /* Product entries */
-.product {
+.product1 {
   margin-bottom: 20px;
   padding-bottom: 10px;
   border-bottom: 1px solid $color-border;
@@ -232,7 +232,7 @@ label {
     margin-top: 10px;
   }
   
-  .product .product-line-price:before {
+  .product1 .product-line-price:before {
     content: 'Item Total: $';
   }
   
