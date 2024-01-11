@@ -8,6 +8,11 @@ import { useNavigate } from 'react-router-dom'
 import { useState ,useEffect} from 'react'
 import './Eyeproduct.scss'
 const Eyeproduct = () => {
+
+    const [id, setId] = useState("")
+    const naviagate = useNavigate()
+    const [msg, setMsg] = useState("")
+    const value = JSON.parse(localStorage.getItem('customer_token'));
     
     const [getProducts,setProducts]=useState([])
   
@@ -24,10 +29,50 @@ const Eyeproduct = () => {
 
 
 
-    const [id, setId] = useState("")
-    const naviagate = useNavigate()
-    const [msg, setMsg] = useState("")
-    const value = JSON.parse(localStorage.getItem('customer_token'));
+    
+    const [getPrdct, setProdct] = useState([]);
+    const [cartlength, setcartlength] = useState(0);
+    const [getwish, setwish] = useState([]);
+    const [wishlength, setwishtlength] = useState(0);
+
+
+    useEffect(() => {
+        const getPrdctDetails = async () => {
+            try {
+                const res = await axios.get(`http://localhost:3333/eco/getCartProduct/${id}`);
+                // console.log(res.data.length);
+                setProdct(res.data);
+
+                setcartlength(res.data.length)
+                console.log(cartlength);
+                console.log(getPrdct);
+            } catch (error) {
+                console.error('Error fetching product details:', error);
+            }
+        };
+        if (id) {
+            getPrdctDetails()
+        }
+    }, [id])
+
+
+
+    useEffect(() => {
+
+        const getPrdctDetails = async () => {
+            const res = await axios.get(`http://localhost:3333/eco/getWishlistProduct/${id}`);
+            setwishtlength(res.data.length)
+            setwish(res.data);
+            console.log(getwish);
+
+        };
+        if (id) {
+            getPrdctDetails()
+        }
+    }, [id])
+
+
+
   
     const getName = async () => {
       const res = await axios.get("http://localhost:3333/eco/CustHome", {
@@ -76,13 +121,30 @@ const Eyeproduct = () => {
 
 
 
-                  <Link to={`/cart/${id}`}>
-                  <div className="addtocart">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-bag" viewBox="0 0 16 16">
-                            <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z" />
-                        </svg>
-                    </div>
-                  </Link>
+                    <Link className='addtocart' to={`cart/${id}`}>
+                        <div className="addtocart">
+
+                            <div className="cartt">
+                                <span className="count">{cartlength}</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-bag" viewBox="0 0 16 16" >
+                                    <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z" />
+                                </svg>
+
+                            </div>
+                        </div>
+                    </Link>
+                    <Link className='addtocart1' to={`whishlist/${id}`}>
+                        <div className="addtocart1" id='svgfav'>
+
+                            <div className="cartt">
+                                <span className="count">{wishlength}</span>
+                                {/* <!--   <span className="count">1</span> --> */}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-heart-fill" viewBox="0 0 16 16">
+                                    <path fillRule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
+                                </svg>
+                            </div>
+                        </div>
+                    </Link>
                 </div>
 
 
