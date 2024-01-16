@@ -430,3 +430,18 @@ export function deleteAllProducts(req,res)
         res.status(404).send(error)
     })
 }
+
+
+
+
+
+export function delwishListProduct(req,res)
+{
+    const{id}=req.params;
+    const data=wishlist_schema.deleteOne({_id:id})
+    data.then((resp)=>{
+        res.status(200).send(resp)          
+    }).catch((error)=>{
+        res.status(404).send(error)
+    })
+}

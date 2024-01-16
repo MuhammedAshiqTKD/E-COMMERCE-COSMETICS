@@ -27,13 +27,26 @@ const Whishlist = () => {
             try {
                 const res = await axios.delete(`http://localhost:3333/eco/delWishListProduct/${id}`);
                 console.log(res.data);
+                // delProduct();
                 getPrdctDetails();
             } catch (error) {
                 console.error("Error deleting product:", error);
             }
         }
     };
-
+    // const delCartPrdct = async (id) => {
+    //   const userConfirmed = window.confirm('Are you sure you want to delete this product from the cart?');
+    //   if (userConfirmed) {
+    //     try {
+    //       await axios.delete(`http://localhost:3333/eco/delWishListProduct/${id}`);
+    //       alert('Product deleted');
+    //       getPrdctDetails();
+    //     } catch (error) {
+    //       console.error('Error deleting product:', error);
+    //     }
+    //   }
+    // };
+  
   return (
 
 
@@ -95,7 +108,7 @@ const Whishlist = () => {
                 <div className="product-price">₹ {data.price}</div>
                 
                 <div className="product-removal">
-                  <button onClick={delProduct} className="remove-product">Remove</button>
+                  <button onClick={()=>delProduct(data._id)} className="remove-product">Remove</button>
                 </div>
                 {/* <div className="product-line-price"></div> */}
               </div>

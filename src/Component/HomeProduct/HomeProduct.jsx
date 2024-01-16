@@ -57,7 +57,7 @@ const HomeProduct = () => {
 
   useEffect(() => {
 
-    const getPrdctDetails = async () => {
+    const getWishlistProduct = async () => {
       const res = await axios.get(`http://localhost:3333/eco/getWishlistProduct/${id}`);
       setwishtlength(res.data.length)
       setwish(res.data);
@@ -65,7 +65,8 @@ const HomeProduct = () => {
 
     };
     if (id) {
-      getPrdctDetails()
+      getWishlistProduct()
+      
     }
   }, [id])
 
