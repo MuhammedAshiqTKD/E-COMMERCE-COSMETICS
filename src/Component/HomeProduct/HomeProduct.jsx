@@ -165,13 +165,13 @@ const HomeProduct = () => {
           <div className="item11">NEW! STUDIO RADIANCE FOUNDATION</div>
           <div className="item1">BEST-SELLERS</div>
           <div className="item1">NEW</div>
-          <div className="item1">LOPS</div>
+          <div className="item1">LIPS</div>
           <div className="item1">FACE</div>
           <div className="item1">EYES</div>
           <div className="item1">SKIN CARE</div>
           <div className="item1">OFFER</div>
           <div className="item1">EXPLORE</div>
-
+          {/* to={`/Faceproduct`} */}
           <div className='home-ind-2'>
             {msg ? (
               <>
@@ -302,7 +302,7 @@ const HomeProduct = () => {
 
         <div className="main3phot9sec">
           <div className="photo1">
-            <img src="/public/1.webp" alt="" />
+            <img src="/1.webp" alt="" />
           </div>
           <div className="photo2">
             <img src="/public/2.avif" alt="" />

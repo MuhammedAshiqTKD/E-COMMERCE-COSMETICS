@@ -43,4 +43,5 @@ router.route("/getWishlistProduct/:id").get(controller.getWishlistProduct);
 router.route("/delAlltProduct/:id").delete(controller.deleteAllProducts);
 router.route("/delWishListProduct/:id").delete(controller.delwishListProduct);
 // router.route("/updateCartItem/:prodId").patch(controller.editQuantity);
+router.route("/updateCartItem/:prodId").patch(controller.editQuantity);
 export default router;

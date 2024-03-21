@@ -11,6 +11,7 @@ const ProductDataFullInCustomer = () => {
     const value = JSON.parse(localStorage.getItem('customer_token'));
     const [getProducts, setProduct] = useState({
         cust_id: "",
+        prod_id: "",
         product_name: "",
         category_name: "",
         Description: "",
@@ -98,7 +99,7 @@ const ProductDataFullInCustomer = () => {
         try {
 
             console.log("Customer ID:", msg, id);
-            const res = await axios.post("http://localhost:3333/eco/addToCart", { ...getProducts, cust_id: Id });
+            const res = await axios.post("http://localhost:3333/eco/addToCart", { ...getProducts, cust_id: Id,quantity:1,prod_id: getProducts._id });
 
             console.log(res.data);
             if (res) {
@@ -119,7 +120,7 @@ const ProductDataFullInCustomer = () => {
 
     const addToWishList = async () => {
         try {
-            const res = await axios.post("http://localhost:3333/eco/addtowishList", { ...getProducts, cust_id: Id });
+            const res = await axios.post("http://localhost:3333/eco/addtowishList", { ...getProducts, cust_id: Id,quantity:1,prod_id :getProducts._id });
             console.log(res.data);
             if (res) {
                 alert("Added To Wishlist")
@@ -163,7 +164,7 @@ const ProductDataFullInCustomer = () => {
 
 
 
-                    <Link className='addtocart' to={`cart/${id}`}>
+                    <Link className='addtocart' to={`/cart/${Id}`}>
                         <div className="addtocart">
 
                             <div className="cartt">
@@ -175,7 +176,7 @@ const ProductDataFullInCustomer = () => {
                             </div>
                         </div>
                     </Link>
-                    <Link className='addtocart1' to={`whishlist/${id}`}>
+                    <Link className='addtocart1' to={`/whishlist/${Id}`}>
                         <div className="addtocart1" id='svgfav'>
 
                             <div className="cartt">

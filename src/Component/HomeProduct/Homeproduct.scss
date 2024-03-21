@@ -156,6 +156,7 @@ body {
     font-family: ano-bold_regular, Helvetica, Arial, sans-serif;
     font-size: 12px;
     font-style: normal;
+    // text-decoration: none;
     font-weight: 700;
     letter-spacing: .30000001192092896px;
     line-height: 1.16667;
@@ -1161,6 +1162,10 @@ body {
       z-index: 1;
       font-size: 24px;
       color: white;
+    }
+    .aaaa div{
+        text-decoration: none;
+        border: none;
     }
     .count {
       position: absolute;
