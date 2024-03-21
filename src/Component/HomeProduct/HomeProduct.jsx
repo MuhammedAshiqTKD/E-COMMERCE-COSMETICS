@@ -373,15 +373,15 @@ const HomeProduct = () => {
 
       <div className="wantyoumore">
         <div className="mainyou">
-          <img src="/public/01.avif" alt="" />
+          <img src="01.avif" alt="" />
           <h1>VIRTUAL TRY-ON</h1>
         </div>
         <div className="mainyou">
-          <img src="/public/02.avif" alt="" />
+          <img src="02.avif" alt="" />
           <h1>BOOK A SERVICE</h1>
         </div>
         <div className="mainyou" id='main3you'>
-          <img src="/public/03-1.avif" alt="" />
+          <img src="03-1.avif" alt="" />
           <h1>LIVE CHAT</h1>
         </div>
       </div>
