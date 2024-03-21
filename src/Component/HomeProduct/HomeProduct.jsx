@@ -302,7 +302,7 @@ const HomeProduct = () => {
 
         <div className="main3phot9sec">
           <div className="photo1">
-            <img src="/1.webp" alt="" />
+            <img src="/public/1.webp" alt="" />
           </div>
           <div className="photo2">
             <img src="/public/2.avif" alt="" />
@@ -326,28 +326,28 @@ const HomeProduct = () => {
       <div className="maincardessntial">
         <Link to={`/Eyeproduct`} className='cardessentail'>
           <div className="cardessentail">
-            <img src="/public/Eye-Block.avif" alt="" />
+            <img src="/Eye-Block.avif" alt="" />
             <h1>EYES</h1>
             <a>SHOP NOW</a>
           </div>
         </Link>
         <Link to={`/Faceproduct`} className='cardessentail'>
           <div className="cardessentail">
-            <img src="/public/Face Block.avif" alt="" />
+            <img src="/Face Block.avif" alt="" />
             <h1>FACE</h1>
             <a>SHOP NOW</a>
           </div>
         </Link>
         <Link to={`/Lipproduct`} className='cardessentail'>
           <div className="cardessentail">
-            <img src="/public/Lip Block.avif" alt="" />
+            <img src="/Lip Block.avif" alt="" />
             <h1>LIP</h1>
             <a>SHOP NOW</a>
           </div>
         </Link>
         <Link to={`/Skinproduct`} className='cardessentail'>
           <div className="cardessentail">
-            <img src="/public/Skin Block 598x598.avif" alt="" />
+            <img src="/Skin Block 598x598.avif" alt="" />
             <h1>SKIN</h1>
             <a>SHOP NOW</a>
           </div>
