@@ -302,13 +302,13 @@ const HomeProduct = () => {
 
         <div className="main3phot9sec">
           <div className="photo1">
-            <img src="/public/1.webp" alt="" />
+            <img src="/1.webp" alt="" />
           </div>
           <div className="photo2">
-            <img src="/public/2.avif" alt="" />
+            <img src="/2.avif" alt="" />
           </div>
           <div className="photo3">
-            <img src="/public/3.avif" alt="" />
+            <img src="/3.avif" alt="" />
           </div>
         </div>
 
